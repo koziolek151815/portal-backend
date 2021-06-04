@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -54,6 +55,9 @@ public class UserEntity {
             inverseJoinColumns = {
                     @JoinColumn(name = "ROLE_ID")})
     private Set<RoleEntity> roles;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<AdEntity> ads = new HashSet<>();
 
     @PrePersist
     void createdAt() {
