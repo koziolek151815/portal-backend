@@ -2,6 +2,7 @@ package swb.portal.chat;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Service;
 import swb.portal.chat.dto.ChatEventDto;
 import swb.portal.chat.dto.ChatMessageDto;
@@ -16,6 +17,7 @@ import java.util.Set;
 public class ChatService {
     private static final String WS_MESSAGE_TRANSFER_DESTINATION = "/topic/chat";
     private final SimpMessagingTemplate simpMessagingTemplate;
+    private final SimpUserRegistry simpUserRegistry;
 
 
     private Queue<ChatPrincipal> searchQueue = new ArrayDeque<>();
@@ -113,5 +115,10 @@ public class ChatService {
                 removeChatSession(chatSession);
             }
         }
+    }
+
+    public int getUserCount()
+    {
+        return simpUserRegistry.getUserCount();
     }
 }
