@@ -14,7 +14,8 @@ public class AdFactory {
                 .adCreatedDate(adEntity.getAdCreatedDate())
                 .user(UserBasicProfileInfoDto.builder()
                         .id(adEntity.getUser().getId())
-                        .username(adEntity.getUser().getUsername()).build())
+                        .username(adEntity.getUser().getUsername())
+                        .email(adEntity.getUser().getEmail()).build())
                 .build();
     }
 

@@ -36,7 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-resources/**",
             "/swagger-ui/**",
             "/v2/api-docs",
-            "/chat/**"
+            "/chat/**",
+            "/ads/**"
     };
 
     @Resource(name = "userService")

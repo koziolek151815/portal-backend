@@ -56,6 +56,7 @@ public class UserFactory {
         return UserBasicProfileInfoDto.builder()
                 .id(entity.getId())
                 .username(entity.getUsername())
+                .email(entity.getEmail())
                 .build();
     }
 }

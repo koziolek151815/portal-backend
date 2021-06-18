@@ -1,6 +1,12 @@
 package swb.portal.ad;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +18,21 @@ import org.springframework.web.bind.annotation.*;
 public class AdController {
     private final AdService adService;
 
-    @GetMapping
+/*    @GetMapping
     public ResponseEntity<?> getAllAds() {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(adService.getAllAds());
+    }*/
+    @GetMapping
+    ResponseEntity<Page<AdResponseDto>> getAllAds(
+            @PageableDefault()
+            @SortDefault.SortDefaults({
+                    @SortDefault(sort = "adCreatedDate", direction = Sort.Direction.DESC)
+            }) Pageable pageable) {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(adService.getAllAds( pageable));
+
     }
 
     @GetMapping("/{id}")
