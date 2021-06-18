@@ -10,5 +10,6 @@ public class UserBasicProfileInfoDto {
 
     private Long id;
     private String username;
+    private String email;
 
 }
